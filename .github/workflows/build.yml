@@ -10,8 +10,8 @@ jobs:
     - name: vuepress-deploy
       uses: yuyinws/yuyinws.github.io@build
       env:
-        ACCESS_TOKEN: 6887ff7c5c19d124b1d21959dd0d819f3700fdde
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: yuyinws/yuyinws.github.io
-        TARGET_BRANCH: buld
+        TARGET_BRANCH: build
         BUILD_SCRIPT: npm install && npm run build
         BUILD_DIR: ./
