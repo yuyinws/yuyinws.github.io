@@ -12,6 +12,6 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: yuyinws/yuyinws.github.io
-        TARGET_BRANCH: master
+        TARGET_BRANCH: build
         BUILD_SCRIPT: yarn && yarn build
-        BUILD_DIR: ./blog/
+        BUILD_DIR: ./
