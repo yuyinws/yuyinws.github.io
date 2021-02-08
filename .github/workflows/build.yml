@@ -14,4 +14,4 @@ jobs:
         TARGET_REPO: yuyinws/yuyinws.github.io
         TARGET_BRANCH: build
         BUILD_SCRIPT: yarn && yarn build
-        BUILD_DIR: ./
+        BUILD_DIR: blog/.vuepress/dist/
