@@ -3,7 +3,7 @@ module.exports = {
   "description": "Keep Thinking",
   //"dest": "/var/www/laravel/test/public/blog",
   //"base":"/blog/",
-  "dest":"../githubpages",
+  "dest":"docs/.vuepress/dist",
   "head": [
     [
       "link",
