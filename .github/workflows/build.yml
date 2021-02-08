@@ -1,5 +1,8 @@
 name: Build and Deploy
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -8,7 +11,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: vuepress-deploy
-      uses: yuyinws/yuyinws.github.io@build
+      uses: yuyinws/yuyinws.github.io@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: yuyinws/yuyinws.github.io
