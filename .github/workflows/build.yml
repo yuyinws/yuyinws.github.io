@@ -14,7 +14,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: yuyinws/yuyinws.github.io
+        TARGET_REPO: jenkey2011/vuepress-deploy@master
         TARGET_BRANCH: build
         BUILD_SCRIPT: npm install && npm run build
         BUILD_DIR: ./
