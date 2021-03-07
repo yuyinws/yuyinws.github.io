@@ -14,7 +14,7 @@ sticky: 1
 
 ## 踩坑
 ### vant-ui与Vue引入顺序
-使用cdn引入vant和vue需要注意顺序，官方文档实例
+使用cdn引入vant和vue需要注意顺序，官方文档实例:
 ``` js
 #vue需要在vant之前引入
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script>
