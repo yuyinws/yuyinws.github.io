@@ -1,5 +1,5 @@
 ---
-title: 前端踩坑记录及小技巧
+title: 前端踩坑记录及小技巧!!!
 date: 2020-12-17
 update: 2021-03-05
 cover: /static/img/cover/frontend.jpg
