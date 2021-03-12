@@ -79,6 +79,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -139,6 +141,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-开源">
+
+    <a href="/source/" rel="section"><i class="fa fa-code fa-fw"></i>开源</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -259,7 +266,7 @@
         <h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h3><p>在某个项目中导出Excel表格文件时由于数据量多，请求时间较长，当请求时间超过php设置的限制时间时就会导致502错误。</p>
 <span id="more"></span>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>修改下面两个文件内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#php.ini，单位秒</span><br><span class="line">...</span><br><span class="line">max_execution_time &#x3D; 3000</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#php-fpm.conf,单位秒</span><br><span class="line">request_terminate_timeout &#x3D; 600</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#php.ini，单位秒</span><br><span class="line">...</span><br><span class="line">max_execution_time = 3000</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#php-fpm.conf,单位秒</span><br><span class="line">request_terminate_timeout = 600</span><br></pre></td></tr></tbody></table></figure>
 <p>之后重启php-fpm服务</p>
 
     </div>
@@ -362,7 +369,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

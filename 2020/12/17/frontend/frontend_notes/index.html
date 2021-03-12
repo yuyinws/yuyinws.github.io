@@ -23,7 +23,7 @@
 
   <meta name="description" content="长期更新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端踩坑记录及小技巧!!!">
+<meta property="og:title" content="前端踩坑记录及小技巧">
 <meta property="og:url" content="http://yuyinws.github.io/2020/12/17/frontend/frontend_notes/index.html">
 <meta property="og:site_name" content="&#x2F;dev&#x2F;null">
 <meta property="og:description" content="长期更新">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/03/12/bluHVWswS31XZYI.jpg">
 <meta property="og:image" content="https://i.loli.net/2021/03/12/bluHVWswS31XZYI.jpg">
 <meta property="article:published_time" content="2020-12-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-12T11:49:17.178Z">
+<meta property="article:modified_time" content="2021-03-12T13:15:28.242Z">
 <meta property="article:author" content="YuYin">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="frontend">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>前端踩坑记录及小技巧!!! | /dev/null</title>
+  <title>前端踩坑记录及小技巧 | /dev/null</title>
   
 
 
@@ -82,6 +82,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -142,6 +144,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-开源">
+
+    <a href="/source/" rel="section"><i class="fa fa-code fa-fw"></i>开源</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -212,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          前端踩坑记录及小技巧!!!
+          前端踩坑记录及小技巧
         </h1>
 
         <div class="post-meta">
@@ -229,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-12 19:49:17" itemprop="dateModified" datetime="2021-03-12T19:49:17+08:00">2021-03-12</time>
+                <time title="修改时间：2021-03-12 21:15:28" itemprop="dateModified" datetime="2021-03-12T21:15:28+08:00">2021-03-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,16 +268,16 @@
 
       
         <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h3 id="vant-ui与Vue引入顺序"><a href="#vant-ui与Vue引入顺序" class="headerlink" title="vant-ui与Vue引入顺序"></a>vant-ui与Vue引入顺序</h3><p>使用cdn引入vant和vue需要注意顺序，官方文档实例:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#vue需要在vant之前引入</span><br><span class="line">&lt;script src=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vant@2.11/lib/vant.min.js&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#vue需要在vant之前引入</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/vant@2.11/lib/vant.min.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="webpack中的publicPath"><a href="#webpack中的publicPath" class="headerlink" title="webpack中的publicPath"></a>webpack中的publicPath</h3><p>在某个Vue项目中，线上路径是<a target="_blank" rel="noopener" href="http://xxxx.com/app">http://xxxx.com/app</a>, 本地dev环境下开发路径为<a target="_blank" rel="noopener" href="http://localhost/app%EF%BC%8C">http://localhost/app，</a> 提示许多静态资源（js、css文件）加载失败。排查过后发现是webpack中dev模式下的publicPath没有设置导致的。将该属性设置为’/app’即可正常加载静态资源。<br>在新版本的Vue中该属性在项目根目录下的vue.config.js文件中设置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#vue.config.js</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  publicPath: <span class="string">&#x27;/my-app&#x27;</span>,</span><br><span class="line">  outputDir: <span class="string">&#x27;dist2&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="手机号正则"><a href="#手机号正则" class="headerlink" title="手机号正则"></a>手机号正则</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d&#123;8&#125;$/</span>;</span><br><span class="line">reg.test(phoneNumber) #符合返回true，不符合返回false</span><br></pre></td></tr></table></figure>
-<h3 id="邮箱正则"><a href="#邮箱正则" class="headerlink" title="邮箱正则"></a>邮箱正则</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]&#123;2,4&#125;)$/</span>;</span><br><span class="line">reg.test(email) #符合返回true，不符合返回false</span><br></pre></td></tr></table></figure>
-<h3 id="获取URL参数"><a href="#获取URL参数" class="headerlink" title="获取URL参数"></a>获取URL参数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#传入要获取的参数名</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetQueryString</span>(<span class="params">name</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;(^|&amp;)&quot;</span>+ name +<span class="string">&quot;=([^&amp;]*)(&amp;|$)&quot;</span>);</span><br><span class="line">     <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg);<span class="comment">//search,查询？后面的参数，并匹配正则</span></span><br><span class="line">     <span class="keyword">if</span>(r!=<span class="literal">null</span>)<span class="keyword">return</span>  <span class="built_in">decodeURI</span>(r[<span class="number">2</span>]); <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#vue.config.js</span><br><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">  publicPath: <span class="string">'/my-app'</span>,</span><br><span class="line">  outputDir: <span class="string">'dist2'</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="手机号正则"><a href="#手机号正则" class="headerlink" title="手机号正则"></a>手机号正则</h3><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/</span>;</span><br><span class="line">reg.test(phoneNumber) #符合返回true，不符合返回false</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="邮箱正则"><a href="#邮箱正则" class="headerlink" title="邮箱正则"></a>邮箱正则</h3><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/</span>;</span><br><span class="line">reg.test(email) #符合返回true，不符合返回false</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="获取URL参数"><a href="#获取URL参数" class="headerlink" title="获取URL参数"></a>获取URL参数</h3><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#传入要获取的参数名</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetQueryString</span>(<span class="params">name</span>)</span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">     <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^|&amp;)"</span>+ name +<span class="string">"=([^&amp;]*)(&amp;|$)"</span>);</span><br><span class="line">     <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg);<span class="comment">//search,查询？后面的参数，并匹配正则</span></span><br><span class="line">     <span class="keyword">if</span>(r!=<span class="literal">null</span>)<span class="keyword">return</span>  <span class="built_in">decodeURI</span>(r[<span class="number">2</span>]); <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="移动端进行控制台调试"><a href="#移动端进行控制台调试" class="headerlink" title="移动端进行控制台调试"></a>移动端进行控制台调试</h3><p>在head标签里加入</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;https://cdn.bootcss.com/eruda/1.4.3/eruda.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;eruda.init();&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/eruda/1.4.3/eruda.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;eruda.init();&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="CSS-超出div用…替代"><a href="#CSS-超出div用…替代" class="headerlink" title="CSS-超出div用…替代"></a>CSS-超出div用…替代</h3><p>在css样式中加入</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-overflow</span>:-o-ellipsis-lastline;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br><span class="line"><span class="attribute">display</span>: -webkit-box;</span><br><span class="line">-webkit-line-clamp: <span class="number">1</span>;</span><br><span class="line">line-clamp:<span class="number">1</span>;</span><br><span class="line">-webkit-box-orient: vertical;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-overflow</span>:-o-ellipsis-lastline;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br><span class="line"><span class="attribute">display</span>: -webkit-box;</span><br><span class="line">-webkit-line-clamp: <span class="number">1</span>;</span><br><span class="line">line-clamp:<span class="number">1</span>;</span><br><span class="line">-webkit-box-orient: vertical;</span><br></pre></td></tr></tbody></table></figure>
 <p>前后效果对比 </p>
 <p><img src="https://i.loli.net/2021/03/12/bluHVWswS31XZYI.jpg" alt="before"><br><img src="https://i.loli.net/2021/03/12/bluHVWswS31XZYI.jpg" alt="before"></p>
 
@@ -374,7 +381,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

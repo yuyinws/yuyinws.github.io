@@ -79,6 +79,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -139,6 +141,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-开源">
+
+    <a href="/source/" rel="section"><i class="fa fa-code fa-fw"></i>开源</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -258,9 +265,9 @@
       
         <p>通过添加yum源的方式安装nginx</p>
 <span id="more"></span>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/nginx.repo</span><br><span class="line"><span class="comment">#输入以下内容</span></span><br><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/nginx.repo</span><br><span class="line"><span class="comment">#输入以下内容</span></span><br><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></tbody></table></figure>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载nginx</span></span><br><span class="line">yum install nginx</span><br><span class="line"><span class="comment">#启动/关闭/重启nginx</span></span><br><span class="line">service nginx start/stop/restart</span><br><span class="line"><span class="comment">#查看nginx状态</span></span><br><span class="line">service nginx status</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载nginx</span></span><br><span class="line">yum install nginx</span><br><span class="line"><span class="comment">#启动/关闭/重启nginx</span></span><br><span class="line">service nginx start/stop/restart</span><br><span class="line"><span class="comment">#查看nginx状态</span></span><br><span class="line">service nginx status</span><br></pre></td></tr></tbody></table></figure>
     </div>
 
     
@@ -280,8 +287,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/17/frontend/frontend_notes/" rel="prev" title="前端踩坑记录及小技巧!!!">
-      <i class="fa fa-chevron-left"></i> 前端踩坑记录及小技巧!!!
+    <a href="/2020/12/17/frontend/frontend_notes/" rel="prev" title="前端踩坑记录及小技巧">
+      <i class="fa fa-chevron-left"></i> 前端踩坑记录及小技巧
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/12/24/linux/mysql/install_mysql_with_rpm/" rel="next" title="CentOS7下使用rpm包安装MySQL">
@@ -360,7 +367,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -79,6 +79,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -139,6 +141,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-开源">
+
+    <a href="/source/" rel="section"><i class="fa fa-code fa-fw"></i>开源</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -257,10 +264,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">获取脚本</span></span><br><span class="line">wget https://yuyinws.github.io/static/code/install_node.sh</span><br><span class="line">chmod 777 ./install_node.sh</span><br><span class="line">source install_node.sh</span><br></pre></td></tr></table></figure>
+        <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">获取脚本</span></span><br><span class="line">wget https://yuyinws.github.io/static/code/install_node.sh</span><br><span class="line">chmod 777 ./install_node.sh</span><br><span class="line">source install_node.sh</span><br></pre></td></tr></tbody></table></figure>
 
 <p>脚本内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">开始安装node...</span></span><br><span class="line">yum install -y wget</span><br><span class="line">wget -P /usr/local/ https://nodejs.org/dist/v14.15.4/node-v14.15.4-linux-x64.tar.xz</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">    echo &quot;解压中......&quot;</span><br><span class="line">    tar -xvf /usr/local/node-v14.15.4-linux-x64.tar.xz -C /usr/local &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    mv /usr/local/node-v14.15.4-linux-x64/ /usr/local/nodejs/</span><br><span class="line">        if [ $? -eq 0 ]; then</span><br><span class="line">        echo &#x27;export PATH=$PATH:/usr/local/nodejs/bin&#x27; &gt;&gt; /etc/profile</span><br><span class="line">        source /etc/profile &gt; /root/test.log</span><br><span class="line">        printf &#x27;node安装完成,使用以下指令进行使用\n&#x27;</span><br><span class="line">        printf &#x27;node -v\n&#x27;</span><br><span class="line">        printf &#x27;npm -v\n&#x27;</span><br><span class="line">        printf &#x27;npx -v\n&#x27;</span><br><span class="line">        else</span><br><span class="line">        echo &quot;解压失败&quot;</span><br><span class="line">        fi</span><br><span class="line">else</span><br><span class="line">echo &quot;下载node压缩包失败&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">开始安装node...</span></span><br><span class="line">yum install -y wget</span><br><span class="line">wget -P /usr/local/ https://nodejs.org/dist/v14.15.4/node-v14.15.4-linux-x64.tar.xz</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">    echo "解压中......"</span><br><span class="line">    tar -xvf /usr/local/node-v14.15.4-linux-x64.tar.xz -C /usr/local &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    mv /usr/local/node-v14.15.4-linux-x64/ /usr/local/nodejs/</span><br><span class="line">        if [ $? -eq 0 ]; then</span><br><span class="line">        echo 'export PATH=$PATH:/usr/local/nodejs/bin' &gt;&gt; /etc/profile</span><br><span class="line">        source /etc/profile &gt; /root/test.log</span><br><span class="line">        printf 'node安装完成,使用以下指令进行使用\n'</span><br><span class="line">        printf 'node -v\n'</span><br><span class="line">        printf 'npm -v\n'</span><br><span class="line">        printf 'npx -v\n'</span><br><span class="line">        else</span><br><span class="line">        echo "解压失败"</span><br><span class="line">        fi</span><br><span class="line">else</span><br><span class="line">echo "下载node压缩包失败"</span><br><span class="line">fi</span><br></pre></td></tr></tbody></table></figure>
     </div>
 
     
@@ -360,7 +367,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
