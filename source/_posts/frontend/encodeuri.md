@@ -3,6 +3,7 @@ title: JS中的encodeURI与encodeURIComponent
 date: 2021-01-27
 sidebarDepth: 1
 cover: /static/img/cover/encodeuri.png
+description: 分析encodeURI与encodeURIComponent的区别
 tags:
  - JavaScript
  - frontend

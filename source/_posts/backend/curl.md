@@ -2,7 +2,7 @@
 title: PHP cURL函数封装
 date: 2021-01-22
 tags: PHP
-cover: /static/img/cover/curl.png
+description: 封装CURL函数
 categories : 后端
 keywords : 
 - CURL

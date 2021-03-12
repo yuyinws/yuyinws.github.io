@@ -2,6 +2,7 @@
 title: CentOS7下使用rpm包安装MySQL
 date: 2020-12-24
 sidebarDepth: 0
+description: 使用rpm包安装mysql
 tags:
  - Linux
  - MySQL
@@ -9,8 +10,6 @@ categories:
  - Linux
 ---
 
-使用rpm包安装mysql
-<!-- more -->
 ### 下载rpm包
 ``` sh
 wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.32-1.el7.x86_64.rpm-bundle.tar

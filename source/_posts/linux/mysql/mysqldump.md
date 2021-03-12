@@ -2,6 +2,7 @@
 title: 使用Crontab和MySQLdump实现每日自动备份数据库
 date: 2020-06-03
 sidebarDepth: 0
+description: Crontab+MySQLdump
 tags:
  - Linux
  - MySQL

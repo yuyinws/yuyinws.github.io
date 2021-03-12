@@ -1,5 +1,5 @@
 ---
-title: 前端踩坑记录及小技巧!!!
+title: 前端踩坑记录及小技巧
 date: 2020-12-17
 update: 2021-03-05
 cover: /static/img/cover/frontend.jpg
@@ -21,7 +21,7 @@ sticky: 1
 <script src="https://cdn.jsdelivr.net/npm/vant@2.11/lib/vant.min.js"></script>
 ```
 ### webpack中的publicPath
-在某个Vue项目中，线上路径是http://xxxx.com/app, 本地dev环境下开发路径为http://localhost/app，提示许多静态资源（js、css文件）加载失败。排查过后发现是webpack中dev模式下的publicPath没有设置导致的。将该属性设置为'/app'即可正常加载静态资源。
+在某个Vue项目中，线上路径是http://xxxx.com/app, 本地dev环境下开发路径为http://localhost/app， 提示许多静态资源（js、css文件）加载失败。排查过后发现是webpack中dev模式下的publicPath没有设置导致的。将该属性设置为'/app'即可正常加载静态资源。
 在新版本的Vue中该属性在项目根目录下的vue.config.js文件中设置
 ``` js
 #vue.config.js
@@ -69,5 +69,5 @@ function GetQueryString(name)
 ```
 前后效果对比 
 
-![](/blog/2020-12-17/before.jpg)
-![](/blog/2020-12-17/after.jpg)
+![before](https://i.loli.net/2021/03/12/bluHVWswS31XZYI.jpg)
+![before](https://i.loli.net/2021/03/12/bluHVWswS31XZYI.jpg)

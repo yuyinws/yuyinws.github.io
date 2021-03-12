@@ -1,21 +1,3 @@
----
-title: CentOS7使用shell脚本安装Node
-date: 2021-01-13
-description: 如何在CentOS7下安装Node
-tags:
- - Node
- - SHELL
-categories: 
- - 后端
----
-``` shell
-#获取脚本
-wget https://yuyinws.github.io/static/code/install_node.sh
-chmod 777 ./install_node.sh
-source install_node.sh
-```
-
-脚本内容
 ``` shell
 #!/bin/bash
 #开始安装node...
@@ -38,4 +20,3 @@ if [ $? -eq 0 ]; then
 else
 echo "下载node压缩包失败"
 fi
-```
