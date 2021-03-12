@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JS中的encodeURI与encodeURIComponent</title>
+    <url>/2021/01/27/frontend/encodeuri/</url>
+    <content><![CDATA[<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURI">encodeURI()</a> 和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent()</a> 都用于对字符串的转义，区别在于2个函数的转义范围不同。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>encodeURI不转义的字符<br>| 类型|包含|<br>|—|—|<br>|保留字符|; , / ? : @ &amp; = + $|<br>|非转义的字符|字母 数字 - _ . ! ~ * ‘ ( )|<br>|数字符号|#|</p>
+<p>encodeURIComponent不转义的字符</p>
+<blockquote>
+<p>字母 数字 - _ . ! ~ * ‘ ( )</p>
+</blockquote>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>浏览器会自动对URL进行一次encodeURI()转义。当访问这个地址时<a href="https://www.yuyinws.top/encode.html?test=%E6%B5%8B%E8%AF%95">https://www.yuyinws.top/encode.html?test=测试</a>可以看到控制台的输出为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.location.href)</span><br><span class="line">https:<span class="comment">//www.yuyinws.top/encode.html?test=%E6%B5%8B%E8%AF%95</span></span><br></pre></td></tr></table></figure>
+<p>因此在获取参数时应该使用decodeURI()进行解析。详细函数见<a href="https://www.yuyinws.top/blog/views/frontend/2020/2020-12-17.html#%E8%8E%B7%E5%8F%96url%E5%8F%82%E6%95%B0">这里</a></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>php执行时间太长导致502 Bad GateWay错误</title>
     <url>/2020/12/24/backend/502_bad_gateway/</url>
     <content><![CDATA[<h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h3><p>在某个项目中导出Excel表格文件时由于数据量多，请求时间较长，当请求时间超过php设置的限制时间时就会导致502错误。</p>
@@ -52,27 +73,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS中的encodeURI与encodeURIComponent</title>
-    <url>/2021/01/27/frontend/encodeuri/</url>
-    <content><![CDATA[<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURI">encodeURI()</a> 和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent()</a> 都用于对字符串的转义，区别在于2个函数的转义范围不同。</p>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>encodeURI不转义的字符<br>| 类型|包含|<br>|—|—|<br>|保留字符|; , / ? : @ &amp; = + $|<br>|非转义的字符|字母 数字 - _ . ! ~ * ‘ ( )|<br>|数字符号|#|</p>
-<p>encodeURIComponent不转义的字符</p>
-<blockquote>
-<p>字母 数字 - _ . ! ~ * ‘ ( )</p>
-</blockquote>
-<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>浏览器会自动对URL进行一次encodeURI()转义。当访问这个地址时<a href="https://www.yuyinws.top/encode.html?test=%E6%B5%8B%E8%AF%95">https://www.yuyinws.top/encode.html?test=测试</a>可以看到控制台的输出为：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.location.href)</span><br><span class="line">https:<span class="comment">//www.yuyinws.top/encode.html?test=%E6%B5%8B%E8%AF%95</span></span><br></pre></td></tr></table></figure>
-<p>因此在获取参数时应该使用decodeURI()进行解析。详细函数见<a href="https://www.yuyinws.top/blog/views/frontend/2020/2020-12-17.html#%E8%8E%B7%E5%8F%96url%E5%8F%82%E6%95%B0">这里</a></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端踩坑记录及小技巧!!!</title>
     <url>/2020/12/17/frontend/frontend_notes/</url>
     <content><![CDATA[<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h3 id="vant-ui与Vue引入顺序"><a href="#vant-ui与Vue引入顺序" class="headerlink" title="vant-ui与Vue引入顺序"></a>vant-ui与Vue引入顺序</h3><p>使用cdn引入vant和vue需要注意顺序，官方文档实例:</p>
@@ -98,21 +98,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用Crontab和MySQLdump实现每日自动备份数据库</title>
-    <url>/2020/06/03/linux/mysql/mysqldump/</url>
-    <content><![CDATA[<h2 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h2><p>mysqldump是MySQL自带的一个备份命令，可以将整个数据库备份成一个sql文件，文件内部都是sql语句。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#基本语法</span></span><br><span class="line">mysqldump -u(用户名) -p(密码) (数据库名) &gt; backup.sql </span><br></pre></td></tr></table></figure>
-<h2 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#备份文件夹路径</span></span><br><span class="line">bakdir=/root/data/backup</span><br><span class="line"><span class="comment">#获取日期</span></span><br><span class="line">d=`date +%F`</span><br><span class="line"><span class="comment">#指定要备份的数据库，这里只指定了一个app数据库</span></span><br><span class="line"><span class="keyword">for</span> db <span class="keyword">in</span> app</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    mysqldump -uroot -ppassword <span class="variable">$db</span> &gt; <span class="variable">$bakdir</span>/<span class="variable">$db</span>\_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$bakdir</span></span><br><span class="line"><span class="comment">#将备份的sql文件打包以减小占用空间</span></span><br><span class="line">gzip *_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="comment">#删除时间超过30天的备份文件</span></span><br><span class="line">find ./ -name <span class="string">&quot;*.gz&quot;</span> -mtime +30 |xargs rm</span><br></pre></td></tr></table></figure>
-<h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#管理crontab服务状态</span></span><br><span class="line">systemctl status/stop/start crond</span><br><span class="line"><span class="comment">#编辑定时项目,编辑方式与vim相同</span></span><br><span class="line">crontab -e</span><br><span class="line"><span class="comment">#创建一条定时任务,每天的凌晨3点30分执行指定脚本</span></span><br><span class="line">30 3 * * * /bin/bash ****.sh</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS7下使用rpm包安装MySQL</title>
     <url>/2020/12/24/linux/mysql/install_mysql_with_rpm/</url>
     <content><![CDATA[<h3 id="下载rpm包"><a href="#下载rpm包" class="headerlink" title="下载rpm包"></a>下载rpm包</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.32-1.el7.x86_64.rpm-bundle.tar</span><br></pre></td></tr></table></figure>
@@ -124,6 +109,21 @@
 <p>输入刚才记录的密码</p>
 <h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><p>必须修改密码之后才可以进行其他数据库操作</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter user user() identified by &#39;password&#39;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Crontab和MySQLdump实现每日自动备份数据库</title>
+    <url>/2020/06/03/linux/mysql/mysqldump/</url>
+    <content><![CDATA[<h2 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h2><p>mysqldump是MySQL自带的一个备份命令，可以将整个数据库备份成一个sql文件，文件内部都是sql语句。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#基本语法</span></span><br><span class="line">mysqldump -u(用户名) -p(密码) (数据库名) &gt; backup.sql </span><br></pre></td></tr></table></figure>
+<h2 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#备份文件夹路径</span></span><br><span class="line">bakdir=/root/data/backup</span><br><span class="line"><span class="comment">#获取日期</span></span><br><span class="line">d=`date +%F`</span><br><span class="line"><span class="comment">#指定要备份的数据库，这里只指定了一个app数据库</span></span><br><span class="line"><span class="keyword">for</span> db <span class="keyword">in</span> app</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    mysqldump -uroot -ppassword <span class="variable">$db</span> &gt; <span class="variable">$bakdir</span>/<span class="variable">$db</span>\_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$bakdir</span></span><br><span class="line"><span class="comment">#将备份的sql文件打包以减小占用空间</span></span><br><span class="line">gzip *_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="comment">#删除时间超过30天的备份文件</span></span><br><span class="line">find ./ -name <span class="string">&quot;*.gz&quot;</span> -mtime +30 |xargs rm</span><br></pre></td></tr></table></figure>
+<h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#管理crontab服务状态</span></span><br><span class="line">systemctl status/stop/start crond</span><br><span class="line"><span class="comment">#编辑定时项目,编辑方式与vim相同</span></span><br><span class="line">crontab -e</span><br><span class="line"><span class="comment">#创建一条定时任务,每天的凌晨3点30分执行指定脚本</span></span><br><span class="line">30 3 * * * /bin/bash ****.sh</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Linux</category>
       </categories>
