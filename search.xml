@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>php执行时间太长导致502 Bad GateWay错误</title>
+    <url>/2020/12/24/backend/502_bad_gateway/</url>
+    <content><![CDATA[<h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h3><p>在某个项目中导出Excel表格文件时由于数据量多，请求时间较长，当请求时间超过php设置的限制时间时就会导致502错误。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>修改下面两个文件内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#php.ini，单位秒</span><br><span class="line">...</span><br><span class="line">max_execution_time &#x3D; 3000</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#php-fpm.conf,单位秒</span><br><span class="line">request_terminate_timeout &#x3D; 600</span><br></pre></td></tr></table></figure>
+<p>之后重启php-fpm服务</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>backend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP cURL函数封装</title>
+    <url>/2021/01/22/backend/curl/</url>
+    <content><![CDATA[<h2 id="CURL"><a href="#CURL" class="headerlink" title="CURL"></a>CURL</h2><blockquote>
+<p>CURL是一个非常强大的开源库，支持很多协议，包括HTTP、FTP、TELNET等，可以使用cURL实现Get和Post请求的方法。!</p>
+</blockquote>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>在开发过程中经常要向第三方服务器发送http请求，使用JS往往会遇到跨域问题，这时候就需要由本地服务器中的PHP向第三方发起http请求。</p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: yuyin</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;*&#125; string $url:请求地址</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;*&#125; array $head:请求头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;*&#125; bool $isPost:是否是post请求</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;*&#125; array $params:请求参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;*&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2021-01-22 12:35:47</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curl</span>(<span class="params"><span class="keyword">string</span> <span class="variable">$url</span>,<span class="keyword">array</span> <span class="variable">$head</span>,<span class="keyword">bool</span> <span class="variable">$isPost</span>,<span class="keyword">array</span> <span class="variable">$params</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="variable">$head</span>)&#123;</span><br><span class="line">        <span class="variable">$head</span> = <span class="keyword">array</span>(<span class="string">&quot;Content-type:application/json;&quot;</span>,<span class="string">&quot;Accept:application/json&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$ch</span> = curl_init();  <span class="comment">//初始化curl</span></span><br><span class="line">    curl_setopt(<span class="variable">$ch</span>,CURLOPT_HTTPHEADER,<span class="variable">$head</span>); <span class="comment">//添加head</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="variable">$isPost</span>)&#123;</span><br><span class="line">        <span class="variable">$url</span> = <span class="variable">$url</span>.<span class="string">&#x27;?&#x27;</span>.http_build_query(<span class="variable">$params</span>); <span class="comment">//get请求，将参数拼接到url后面</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable">$params</span> = json_encode(<span class="variable">$params</span>);   <span class="comment">//post请求，将请求参数转化成json格式</span></span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_POST, <span class="number">1</span>);  <span class="comment">//声明是post请求</span></span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_POSTFIELDS, <span class="variable">$params</span>); <span class="comment">//添加请求参数</span></span><br><span class="line">    &#125;</span><br><span class="line">    curl_setopt(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$url</span>); <span class="comment">//添加url</span></span><br><span class="line">    <span class="variable">$response</span> = curl_exec(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="variable">$curl_errno</span> = curl_errno(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="variable">$curl_error</span> = curl_error(<span class="variable">$ch</span>);</span><br><span class="line">    curl_close(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="variable">$response</span> = json_decode(<span class="variable">$response</span>,<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$curl_errno</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;cURL Error (<span class="subst">$curl_errno</span>): <span class="subst">$curl_error</span>\n&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$response</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="调用示例"><a href="#调用示例" class="headerlink" title="调用示例"></a>调用示例</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">curl(<span class="string">&#x27;https://www.yuyinws.top/api/album/detail&#x27;</span>,[],<span class="literal">false</span>,<span class="keyword">array</span>(<span class="string">&#x27;albumid&#x27;</span> =&gt; <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS7使用shell脚本安装Node</title>
+    <url>/2021/01/13/backend/install_node/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">获取脚本</span></span><br><span class="line">wget https://www.yuyinws.top/blog/shell/install_node.sh</span><br><span class="line">chmod 777 ./install_node.sh</span><br><span class="line">source install_node.sh</span><br></pre></td></tr></table></figure>
+
+<p>脚本内容</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">开始安装node...</span></span><br><span class="line">yum install -y wget</span><br><span class="line">wget -P /usr/local/ https://nodejs.org/dist/v14.15.4/node-v14.15.4-linux-x64.tar.xz</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">    echo &quot;解压中......&quot;</span><br><span class="line">    tar -xvf /usr/local/node-v14.15.4-linux-x64.tar.xz -C /usr/local &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    mv /usr/local/node-v14.15.4-linux-x64/ /usr/local/nodejs/</span><br><span class="line">        if [ $? -eq 0 ]; then</span><br><span class="line">        echo &#x27;export PATH=$PATH:/usr/local/nodejs/bin&#x27; &gt;&gt; /etc/profile</span><br><span class="line">        source /etc/profile &gt; /root/test.log</span><br><span class="line">        printf &#x27;node安装完成,使用以下指令进行使用\n&#x27;</span><br><span class="line">        printf &#x27;node -v\n&#x27;</span><br><span class="line">        printf &#x27;npm -v\n&#x27;</span><br><span class="line">        printf &#x27;npx -v\n&#x27;</span><br><span class="line">        else</span><br><span class="line">        echo &quot;解压失败&quot;</span><br><span class="line">        fi</span><br><span class="line">else</span><br><span class="line">echo &quot;下载node压缩包失败&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Node</tag>
+        <tag>SHELL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS中的encodeURI与encodeURIComponent</title>
+    <url>/2021/01/27/frontend/encodeuri/</url>
+    <content><![CDATA[<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURI">encodeURI()</a> 和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent()</a> 都用于对字符串的转义，区别在于2个函数的转义范围不同。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>encodeURI不转义的字符<br>| 类型|包含|<br>|—|—|<br>|保留字符|; , / ? : @ &amp; = + $|<br>|非转义的字符|字母 数字 - _ . ! ~ * ‘ ( )|<br>|数字符号|#|</p>
+<p>encodeURIComponent不转义的字符</p>
+<blockquote>
+<p>字母 数字 - _ . ! ~ * ‘ ( )</p>
+</blockquote>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>浏览器会自动对URL进行一次encodeURI()转义。当访问这个地址时<a href="https://www.yuyinws.top/encode.html?test=%E6%B5%8B%E8%AF%95">https://www.yuyinws.top/encode.html?test=测试</a>可以看到控制台的输出为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.location.href)</span><br><span class="line">https:<span class="comment">//www.yuyinws.top/encode.html?test=%E6%B5%8B%E8%AF%95</span></span><br></pre></td></tr></table></figure>
+<p>因此在获取参数时应该使用decodeURI()进行解析。详细函数见<a href="https://www.yuyinws.top/blog/views/frontend/2020/2020-12-17.html#%E8%8E%B7%E5%8F%96url%E5%8F%82%E6%95%B0">这里</a></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端踩坑记录及小技巧!!!</title>
+    <url>/2020/12/17/frontend/frontend_notes/</url>
+    <content><![CDATA[<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h3 id="vant-ui与Vue引入顺序"><a href="#vant-ui与Vue引入顺序" class="headerlink" title="vant-ui与Vue引入顺序"></a>vant-ui与Vue引入顺序</h3><p>使用cdn引入vant和vue需要注意顺序，官方文档实例:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#vue需要在vant之前引入</span><br><span class="line">&lt;script src=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vant@2.11/lib/vant.min.js&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="webpack中的publicPath"><a href="#webpack中的publicPath" class="headerlink" title="webpack中的publicPath"></a>webpack中的publicPath</h3><p>在某个Vue项目中，线上路径是<a href="http://xxxx.com/app">http://xxxx.com/app</a>, 本地dev环境下开发路径为<a href="http://localhost/app%EF%BC%8C%E6%8F%90%E7%A4%BA%E8%AE%B8%E5%A4%9A%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%88js%E3%80%81css%E6%96%87%E4%BB%B6%EF%BC%89%E5%8A%A0%E8%BD%BD%E5%A4%B1%E8%B4%A5%E3%80%82%E6%8E%92%E6%9F%A5%E8%BF%87%E5%90%8E%E5%8F%91%E7%8E%B0%E6%98%AFwebpack%E4%B8%ADdev%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84publicPath%E6%B2%A1%E6%9C%89%E8%AE%BE%E7%BD%AE%E5%AF%BC%E8%87%B4%E7%9A%84%E3%80%82%E5%B0%86%E8%AF%A5%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E4%B8%BA&#39;/app&#39;%E5%8D%B3%E5%8F%AF%E6%AD%A3%E5%B8%B8%E5%8A%A0%E8%BD%BD%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E3%80%82">http://localhost/app，提示许多静态资源（js、css文件）加载失败。排查过后发现是webpack中dev模式下的publicPath没有设置导致的。将该属性设置为&#39;/app&#39;即可正常加载静态资源。</a><br>在新版本的Vue中该属性在项目根目录下的vue.config.js文件中设置</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#vue.config.js</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  publicPath: <span class="string">&#x27;/my-app&#x27;</span>,</span><br><span class="line">  outputDir: <span class="string">&#x27;dist2&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="手机号正则"><a href="#手机号正则" class="headerlink" title="手机号正则"></a>手机号正则</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d&#123;8&#125;$/</span>;</span><br><span class="line">reg.test(phoneNumber) #符合返回true，不符合返回false</span><br></pre></td></tr></table></figure>
+<h3 id="邮箱正则"><a href="#邮箱正则" class="headerlink" title="邮箱正则"></a>邮箱正则</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]&#123;2,4&#125;)$/</span>;</span><br><span class="line">reg.test(email) #符合返回true，不符合返回false</span><br></pre></td></tr></table></figure>
+<h3 id="获取URL参数"><a href="#获取URL参数" class="headerlink" title="获取URL参数"></a>获取URL参数</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#传入要获取的参数名</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetQueryString</span>(<span class="params">name</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;(^|&amp;)&quot;</span>+ name +<span class="string">&quot;=([^&amp;]*)(&amp;|$)&quot;</span>);</span><br><span class="line">     <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg);<span class="comment">//search,查询？后面的参数，并匹配正则</span></span><br><span class="line">     <span class="keyword">if</span>(r!=<span class="literal">null</span>)<span class="keyword">return</span>  <span class="built_in">decodeURI</span>(r[<span class="number">2</span>]); <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="移动端进行控制台调试"><a href="#移动端进行控制台调试" class="headerlink" title="移动端进行控制台调试"></a>移动端进行控制台调试</h3><p>在head标签里加入</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;https://cdn.bootcss.com/eruda/1.4.3/eruda.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;eruda.init();&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="CSS-超出div用…替代"><a href="#CSS-超出div用…替代" class="headerlink" title="CSS-超出div用…替代"></a>CSS-超出div用…替代</h3><p>在css样式中加入</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">text-overflow</span>:-o-ellipsis-lastline;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br><span class="line"><span class="attribute">display</span>: -webkit-box;</span><br><span class="line">-webkit-line-clamp: <span class="number">1</span>;</span><br><span class="line">line-clamp:<span class="number">1</span>;</span><br><span class="line">-webkit-box-orient: vertical;</span><br></pre></td></tr></table></figure>
+<p>前后效果对比 </p>
+<p><img src="/blog/2020-12-17/before.jpg"><br><img src="/blog/2020-12-17/after.jpg"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Crontab和MySQLdump实现每日自动备份数据库</title>
+    <url>/2020/06/03/linux/mysql/mysqldump/</url>
+    <content><![CDATA[<h2 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h2><p>mysqldump是MySQL自带的一个备份命令，可以将整个数据库备份成一个sql文件，文件内部都是sql语句。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#基本语法</span></span><br><span class="line">mysqldump -u(用户名) -p(密码) (数据库名) &gt; backup.sql </span><br></pre></td></tr></table></figure>
+<h2 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#备份文件夹路径</span></span><br><span class="line">bakdir=/root/data/backup</span><br><span class="line"><span class="comment">#获取日期</span></span><br><span class="line">d=`date +%F`</span><br><span class="line"><span class="comment">#指定要备份的数据库，这里只指定了一个app数据库</span></span><br><span class="line"><span class="keyword">for</span> db <span class="keyword">in</span> app</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    mysqldump -uroot -ppassword <span class="variable">$db</span> &gt; <span class="variable">$bakdir</span>/<span class="variable">$db</span>\_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$bakdir</span></span><br><span class="line"><span class="comment">#将备份的sql文件打包以减小占用空间</span></span><br><span class="line">gzip *_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="comment">#删除时间超过30天的备份文件</span></span><br><span class="line">find ./ -name <span class="string">&quot;*.gz&quot;</span> -mtime +30 |xargs rm</span><br></pre></td></tr></table></figure>
+<h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#管理crontab服务状态</span></span><br><span class="line">systemctl status/stop/start crond</span><br><span class="line"><span class="comment">#编辑定时项目,编辑方式与vim相同</span></span><br><span class="line">crontab -e</span><br><span class="line"><span class="comment">#创建一条定时任务,每天的凌晨3点30分执行指定脚本</span></span><br><span class="line">30 3 * * * /bin/bash ****.sh</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS7下使用rpm包安装MySQL</title>
+    <url>/2020/12/24/linux/mysql/install_mysql_with_rpm/</url>
+    <content><![CDATA[<h3 id="下载rpm包"><a href="#下载rpm包" class="headerlink" title="下载rpm包"></a>下载rpm包</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.32-1.el7.x86_64.rpm-bundle.tar</span><br></pre></td></tr></table></figure>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">tar -xvf mysql-5.7.32-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line"></span><br><span class="line">mysql-community-client-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-devel-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-server-5.7.32-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-test-5.7.32-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">yum install -y mysql-community-*.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h3 id="开启服务"><a href="#开启服务" class="headerlink" title="开启服务"></a>开启服务</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
+<h3 id="记录下随机密码"><a href="#记录下随机密码" class="headerlink" title="记录下随机密码"></a>记录下随机密码</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">grep <span class="string">&#x27;temporary password&#x27;</span> /var/<span class="built_in">log</span>/mysqld.log</span><br><span class="line"></span><br><span class="line">2020-12-25T03:38:05.302781Z 1 [Note] A temporary password is generated <span class="keyword">for</span> root@localhost: cqU?bpQ3BFM.</span><br></pre></td></tr></table></figure>
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>输入刚才记录的密码</p>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><p>必须修改密码之后才可以进行其他数据库操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter user user() identified by &#39;password&#39;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos7下yum安装nginx</title>
+    <url>/2020/12/21/linux/nginx/install_ngnx/</url>
+    <content><![CDATA[<p>通过添加yum源的方式安装nginx</p>
+<span id="more"></span>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">vim /etc/yum.repos.d/nginx.repo</span><br><span class="line"><span class="comment">#输入以下内容</span></span><br><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#下载nginx</span></span><br><span class="line">yum install nginx</span><br><span class="line"><span class="comment">#启动/关闭/重启nginx</span></span><br><span class="line">service nginx start/stop/restart</span><br><span class="line"><span class="comment">#查看nginx状态</span></span><br><span class="line">service nginx status</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+</search>
