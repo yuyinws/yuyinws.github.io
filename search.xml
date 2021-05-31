@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>php执行时间太长导致502 Bad GateWay错误</title>
-    <url>/2020/12/24/backend/502_bad_gateway/</url>
-    <content><![CDATA[<h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h3><p>在某个项目中导出Excel表格文件时由于数据量多，请求时间较长，当请求时间超过php设置的限制时间时就会导致502错误。</p>
-<span id="more"></span>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>修改下面两个文件内容</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">#php.ini，单位秒</span><br><span class="line">...</span><br><span class="line">max_execution_time = 3000</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#php-fpm.conf,单位秒</span><br><span class="line">request_terminate_timeout = 600</span><br></pre></td></tr></tbody></table></figure>
-<p>之后重启php-fpm服务</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>backend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PHP cURL函数封装</title>
     <url>/2021/01/22/backend/curl/</url>
     <content><![CDATA[<h2 id="CURL"><a href="#CURL" class="headerlink" title="CURL"></a>CURL</h2><blockquote>
@@ -37,6 +20,23 @@
       </tags>
   </entry>
   <entry>
+    <title>php执行时间太长导致502 Bad GateWay错误</title>
+    <url>/2020/12/24/backend/502_bad_gateway/</url>
+    <content><![CDATA[<h3 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h3><p>在某个项目中导出Excel表格文件时由于数据量多，请求时间较长，当请求时间超过php设置的限制时间时就会导致502错误。</p>
+<span id="more"></span>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>修改下面两个文件内容</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">#php.ini，单位秒</span><br><span class="line">...</span><br><span class="line">max_execution_time = 3000</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">#php-fpm.conf,单位秒</span><br><span class="line">request_terminate_timeout = 600</span><br></pre></td></tr></tbody></table></figure>
+<p>之后重启php-fpm服务</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>backend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS7使用shell脚本安装Node</title>
     <url>/2021/01/13/backend/install_node/</url>
     <content><![CDATA[<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">获取脚本</span></span><br><span class="line">wget https://yuyinws.github.io/static/code/install_node.sh</span><br><span class="line">chmod 777 ./install_node.sh</span><br><span class="line">source install_node.sh</span><br></pre></td></tr></tbody></table></figure>
@@ -49,23 +49,6 @@
       <tags>
         <tag>Node</tag>
         <tag>SHELL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>将Emoji存入到MySQL中</title>
-    <url>/2021/03/10/frontend/emoji_to_mysql/</url>
-    <content><![CDATA[<h2 id="问题起因"><a href="#问题起因" class="headerlink" title="问题起因"></a>问题起因</h2><p>在某个项目中出现了一小部分用户无法注册系统的问题，经过排查是因为这部分用户的微信昵称中包含emoji，导致用户信息插入数据库时报错。</p>
-<span id="more"></span>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>最开始自然是一顿百度，把数据库、表和字段的编码排列方式都改为了uft8mb4,又修改了mysql的配置文件，结果还是没有解决。</p>
-<p>于是又采用了另外一种折中的方法，先将用户微信昵称中的emoji转变为unicode编码，然后再插入到数据库中。这里使用了一个第三方库<a href="https://github.com/channg/umoji">umoji</a>。</p>
-<p>如果不做任何处理，在前端展示用户名昵称的时候只会显示unicode编码。最后用了Javascript中的 <strong>eval()</strong> 函数将unicode编码转变为emoji。</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line">result.nickName = <span class="built_in">eval</span>(<span class="string">"'"</span> + result.nickName + <span class="string">"'"</span>);</span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -112,6 +95,23 @@
 <figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">obj</span>) </span>{</span><br><span class="line">  <span class="keyword">let</span> objClone = <span class="built_in">Array</span>.isArray(obj) ? [] : {};</span><br><span class="line">  <span class="keyword">if</span> (obj &amp;&amp; <span class="keyword">typeof</span> obj === <span class="string">'object'</span>) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) {</span><br><span class="line">      <span class="keyword">if</span> (obj[key] &amp;&amp; <span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span>) {</span><br><span class="line">        objClone[key] = deepClone(obj[key]);</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        objClone[key] = obj[key];</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> objClone;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = {</span><br><span class="line">  stu: {</span><br><span class="line">    name: <span class="string">'小红'</span>,</span><br><span class="line">    age: <span class="number">23</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = deepClone(a);</span><br><span class="line">b.stu.name = <span class="string">"小明"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.stu.name) <span class="comment">//输出小红</span></span><br></pre></td></tr></tbody></table></figure>
 
 ]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>将Emoji存入到MySQL中</title>
+    <url>/2021/03/10/frontend/emoji_to_mysql/</url>
+    <content><![CDATA[<h2 id="问题起因"><a href="#问题起因" class="headerlink" title="问题起因"></a>问题起因</h2><p>在某个项目中出现了一小部分用户无法注册系统的问题，经过排查是因为这部分用户的微信昵称中包含emoji，导致用户信息插入数据库时报错。</p>
+<span id="more"></span>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>最开始自然是一顿百度，把数据库、表和字段的编码排列方式都改为了uft8mb4,又修改了mysql的配置文件，结果还是没有解决。</p>
+<p>于是又采用了另外一种折中的方法，先将用户微信昵称中的emoji转变为unicode编码，然后再插入到数据库中。这里使用了一个第三方库<a href="https://github.com/channg/umoji">umoji</a>。</p>
+<p>如果不做任何处理，在前端展示用户名昵称的时候只会显示unicode编码。最后用了Javascript中的 <strong>eval()</strong> 函数将unicode编码转变为emoji。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line">result.nickName = <span class="built_in">eval</span>(<span class="string">"'"</span> + result.nickName + <span class="string">"'"</span>);</span><br></pre></td></tr></tbody></table></figure>]]></content>
       <categories>
         <category>前端</category>
       </categories>
@@ -229,6 +229,21 @@
       </tags>
   </entry>
   <entry>
+    <title>使用Crontab和MySQLdump实现每日自动备份数据库</title>
+    <url>/2020/06/03/linux/mysql/mysqldump/</url>
+    <content><![CDATA[<h2 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h2><p>mysqldump是MySQL自带的一个备份命令，可以将整个数据库备份成一个sql文件，文件内部都是sql语句。</p>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#基本语法</span></span><br><span class="line">mysqldump -u(用户名) -p(密码) (数据库名) &gt; backup.sql </span><br></pre></td></tr></tbody></table></figure>
+<h2 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h2><figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#备份文件夹路径</span></span><br><span class="line">bakdir=/root/data/backup</span><br><span class="line"><span class="comment">#获取日期</span></span><br><span class="line">d=`date +%F`</span><br><span class="line"><span class="comment">#指定要备份的数据库，这里只指定了一个app数据库</span></span><br><span class="line"><span class="keyword">for</span> db <span class="keyword">in</span> app</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    mysqldump -uroot -ppassword <span class="variable">$db</span> &gt; <span class="variable">$bakdir</span>/<span class="variable">$db</span>\_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$bakdir</span></span><br><span class="line"><span class="comment">#将备份的sql文件打包以减小占用空间</span></span><br><span class="line">gzip *_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="comment">#删除时间超过30天的备份文件</span></span><br><span class="line">find ./ -name <span class="string">"*.gz"</span> -mtime +30 |xargs rm</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#管理crontab服务状态</span></span><br><span class="line">systemctl status/stop/start crond</span><br><span class="line"><span class="comment">#编辑定时项目,编辑方式与vim相同</span></span><br><span class="line">crontab -e</span><br><span class="line"><span class="comment">#创建一条定时任务,每天的凌晨3点30分执行指定脚本</span></span><br><span class="line">30 3 * * * /bin/bash ****.sh</span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos7下yum安装nginx</title>
     <url>/2020/12/21/linux/nginx/install_ngnx/</url>
     <content><![CDATA[<p>通过添加yum源的方式安装nginx</p>
@@ -242,21 +257,6 @@
       <tags>
         <tag>Linux</tag>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Crontab和MySQLdump实现每日自动备份数据库</title>
-    <url>/2020/06/03/linux/mysql/mysqldump/</url>
-    <content><![CDATA[<h2 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h2><p>mysqldump是MySQL自带的一个备份命令，可以将整个数据库备份成一个sql文件，文件内部都是sql语句。</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#基本语法</span></span><br><span class="line">mysqldump -u(用户名) -p(密码) (数据库名) &gt; backup.sql </span><br></pre></td></tr></tbody></table></figure>
-<h2 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h2><figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#备份文件夹路径</span></span><br><span class="line">bakdir=/root/data/backup</span><br><span class="line"><span class="comment">#获取日期</span></span><br><span class="line">d=`date +%F`</span><br><span class="line"><span class="comment">#指定要备份的数据库，这里只指定了一个app数据库</span></span><br><span class="line"><span class="keyword">for</span> db <span class="keyword">in</span> app</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    mysqldump -uroot -ppassword <span class="variable">$db</span> &gt; <span class="variable">$bakdir</span>/<span class="variable">$db</span>\_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$bakdir</span></span><br><span class="line"><span class="comment">#将备份的sql文件打包以减小占用空间</span></span><br><span class="line">gzip *_<span class="variable">$d</span>.sql</span><br><span class="line"><span class="comment">#删除时间超过30天的备份文件</span></span><br><span class="line">find ./ -name <span class="string">"*.gz"</span> -mtime +30 |xargs rm</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#管理crontab服务状态</span></span><br><span class="line">systemctl status/stop/start crond</span><br><span class="line"><span class="comment">#编辑定时项目,编辑方式与vim相同</span></span><br><span class="line">crontab -e</span><br><span class="line"><span class="comment">#创建一条定时任务,每天的凌晨3点30分执行指定脚本</span></span><br><span class="line">30 3 * * * /bin/bash ****.sh</span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>MySQL</tag>
       </tags>
   </entry>
 </search>
