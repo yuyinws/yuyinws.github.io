@@ -259,4 +259,51 @@
         <tag>MySQL</tag>
       </tags>
   </entry>
+  <entry>
+    <title>git常用操作总结</title>
+    <url>/2021/06/17/others/git/</url>
+    <content><![CDATA[<blockquote>
+<p>origin-url:远程仓库地址<br>origin-branch:远程分支</p>
+</blockquote>
+<h2 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 克隆远程master分支到本地</span></span><br><span class="line">git clone &lt;origin-url&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -b:克隆远程指定分支到本地</span></span><br><span class="line">git clone -b &lt;origin-branch&gt; &lt;origin-url&gt; </span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flex常用属性</title>
+    <url>/2021/07/02/frontend/flex/</url>
+    <content><![CDATA[<h2 id="父容器属性"><a href="#父容器属性" class="headerlink" title="父容器属性"></a>父容器属性</h2><h3 id="flex-direction-决定子项目的排列方向"><a href="#flex-direction-决定子项目的排列方向" class="headerlink" title="flex-direction(决定子项目的排列方向)"></a>flex-direction(决定子项目的排列方向)</h3><ul>
+<li>row（默认，从左至右）</li>
+<li>row-reverse（从右至左）</li>
+<li>column（从上往下）</li>
+<li>cloumn-reverse（从下往上）</li>
+</ul>
+<h3 id="justify-content-决定子项目的对齐方式"><a href="#justify-content-决定子项目的对齐方式" class="headerlink" title="justify-content(决定子项目的对齐方式)"></a>justify-content(决定子项目的对齐方式)</h3><ul>
+<li>flex-start（默认，左对齐）</li>
+<li>flex-end（右对齐）</li>
+<li>center（居中）</li>
+<li>space-between（两端对齐）</li>
+<li>space-around（每个项目的左右间隔相等）</li>
+</ul>
+<h3 id="flex-wrap-子项目换行方式"><a href="#flex-wrap-子项目换行方式" class="headerlink" title="flex-wrap(子项目换行方式)"></a>flex-wrap(子项目换行方式)</h3><ul>
+<li>nowrap（默认，不换行）</li>
+<li>wrap（正常换行）</li>
+<li>wrap-reverse（换行，第一行在下方）</li>
+</ul>
+<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><p><code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>frontend</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
 </search>
